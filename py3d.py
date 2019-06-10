@@ -20,10 +20,7 @@ def project(c: Point3D, p: Point3D, a: Point3D, b: Point3D, d: Point3D) -> Point
         ]
         matrix.append(row)
     _, t, u = solve(matrix)
-    w = sum((a[i] - b[i]) ** 2 for i in range(3)) ** .5
-    h = sum((b[i] - d[i]) ** 2 for i in range(3)) ** .5
-
-    return t * w, u * h
+    return t, u
 
 
 def cube():
@@ -46,7 +43,7 @@ def cube():
             for k in range(2):
                 point = (20 * i - 10, 20 * j - 10, 20 * k + 40)
                 x, y = project(camera, point, *plane)
-                draw.point((x, y), fill=black)
+                draw.point((x * wid, y * hei), fill=black)
 
     image.save("output.png")
 
